@@ -4,19 +4,15 @@ set_schema = {
 
     "type": "object",
     "properties": {
-        "auth": {
+        "session": {
             "type": "string",
             "minLength": 32,
-            "description": "authentication token"
+            "description": "session token"
         },
-        "output": {
-            "type": {
-                "enum": {
-                    "pwm"
-                    "analog",
-                    "digital"
-                }
-            },
+        "mode": {
+            "type": "string",
+            "minLength": 3,   # pwm
+            "maxLength": 7,   # digital
             "description": "describes which actor shall be controlled"
         },
         "actor": {
@@ -34,6 +30,6 @@ set_schema = {
     },
 
     "required": [
-        "auth", "output", "actor", "value"
+        "session", "output", "actor", "value"
     ]
 }
