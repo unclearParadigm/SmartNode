@@ -6,13 +6,13 @@ from schema.requests import set_schema
 
 class SetDto(object):
     def __init__(self, validated_instance: dict):
-        self.auth = str(validated_instance['auth'])
-        self.output = str(validated_instance['output'])
+        self.session = str(validated_instance['session'])
+        self.mode = str(validated_instance['mode'])
         self.actor = int(validated_instance['actor'])
         self.value = int(validated_instance['value'])
 
     def __str__(self) -> str:
-        return 'SET[{0}-{1}]: {2}'.format(str(self.output), str(self.actor), str(self.value))
+        return 'SET[{0}-{1}]: {2}'.format(str(self.mode), str(self.actor), str(self.value))
 
     def __repr__(self) -> str:
         return self.__str__()

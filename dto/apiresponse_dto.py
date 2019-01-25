@@ -7,12 +7,12 @@ class ApiResponse(object):
         self.requestok = bool(requestok)
         self.success = bool(success) if requestok else False
         self.message = str(message)
-        self.request = dict(request)
+        self.request = request
         self.value = value
 
-    def make_response(self):
+    def make_response(self) -> any:
         return jsonify({
-            'timestamp': time(),
+            'timestamp': int(time()),
             'success': self.success,
             'message': self.message,
             'request': self.request,
