@@ -27,11 +27,15 @@ class DigitalSwitch {
         if(this.gpioState === null) {
             subTemplate = `<h5> Waiting for Value ... (display spinner) </h5>`
         } else {
-            const toggleChecked = this.gpioState.high ? 'checked' : '';
-            subTemplate = `<input class="tgl tgl-skewed js-digitalswitch-${this.gpioConfiguration.gpio}-tgl" type="checkbox" ${toggleChecked}/>`
+            const toggleChecked = this.gpioState.high ? 'checked="checked"' : '';
+            subTemplate = `
+            <div class="field">
+                <input id="js-digitalswitch-${this.gpioConfiguration.gpio}" type="checkbox" name="switchLarge" class="switch is-large" ${toggleChecked}>
+                <label for="js-digitalswitch-${this.gpioConfiguration.gpio}"></label>
+            </div>`;
         }
 
-        return `<div class="column card js-digitalswitch-${this.gpioConfiguration.gpio}" style="maring: 10px;">
+        return `<div class="column card has-text-centered js-digitalswitch-${this.gpioConfiguration.gpio}" style="maring: 10px;">
             <header class="card-header">
             <p class="card-header-title">${this.gpioConfiguration.name}</p>
             <a href="#" class="card-header-icon" aria-label="more options">
