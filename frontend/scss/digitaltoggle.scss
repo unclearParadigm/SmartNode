@@ -1,0 +1,56 @@
+.tgl-skewed {
+	+ .tgl-btn {
+		overflow: hidden;
+		transform: skew(-10deg);
+		backface-visibility: hidden;
+		transition: all .2s ease;
+		font-family: sans-serif;
+		background: #888;
+    
+        &:after,
+        &:before {
+			transform: skew(10deg);
+			display: inline-block;
+			transition: all .2s ease;
+			width: 100%;
+			text-align: center;
+			position: absolute;
+			line-height: 2em;
+			font-weight: bold;
+			color: #fff;
+			text-shadow: 0 1px 0 rgba(0,0,0,.4);
+		}
+    
+		&:after {
+			left: 100%;
+			content: attr(data-tg-on);
+		}
+    
+		&:before {
+			left: 0;
+			content: attr(data-tg-off);
+		}
+    
+		&:active {
+			background: #888;
+			&:before {
+				left: -10%;
+			}
+		}
+	}
+  
+	&:checked + .tgl-btn {
+        background: #86d993;
+        &:before {
+            left: -100%;
+        }
+
+        &:after {
+            left: 0;
+        }
+
+        &:active:after {
+            left: 10%;
+        }
+	}
+}

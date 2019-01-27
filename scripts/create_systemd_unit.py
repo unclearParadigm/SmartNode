@@ -5,9 +5,9 @@ import os.path
 from sys import argv
 from time import time
 
-from envhelper import print_header
-from envhelper import is_started_by_root
-from locator import get_application_root
+from backend.envhelper import print_header
+from backend.envhelper import is_started_as_root
+from backend.locator import get_backend_root
 
 _unit_path = '/lib/systemd/system/smartnode.service'
 _backup_path = './smartnode_{0}.service.bak'.format(time())
@@ -23,7 +23,7 @@ ExecStart=/usr/bin/python3 {application_root}/webapi.py
 
 [Install]
 WantedBy=multi-user.target
-'''.format(application_root=get_application_root())
+'''.format(application_root=get_backend_root())
 
 
 def print_help() -> None:
@@ -74,7 +74,7 @@ if __name__ == '__main__':
         print_help()
         exit(0)
 
-    if not is_started_by_root():
+    if not is_started_as_root():
         print('ERROR: This script must be run as root-user (requires root privileges)')
         print('Type "create_systemd_unit.py --help" for further information about this script')
         print('')

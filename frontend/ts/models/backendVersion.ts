@@ -1,0 +1,3 @@
+interface BackendVersion {
+    version: string;
+}
