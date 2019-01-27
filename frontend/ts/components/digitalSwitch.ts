@@ -14,23 +14,35 @@ class DigitalSwitch {
     public start(): void {
         setInterval(() => {
             this.dataService.fetchGPIOState(this.gpioConfiguration.gpio, (newGPIOState) => {
-                console.log(newGPIOState);
                 this.gpioState = newGPIOState;
                 this.render();
+                $(`#js-digitalswitch-${this.gpioConfiguration.gpio}`).change(() => {
+                    this.invertState();
+                });
             });
             this.container.html(this.render());
         }, this.switchUpdateInterval);
     }
 
+    public invertState(): void {
+        console.log("STATE CHANGE DETECTED ... POSTING TO SERVICE");
+    }
+
     public render(): string {
         var subTemplate;
         if(this.gpioState === null) {
-            subTemplate = `<h5> Waiting for Value ... (display spinner) </h5>`
+            subTemplate = `
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>`
         } else {
             const toggleChecked = this.gpioState.high ? 'checked="checked"' : '';
             subTemplate = `
             <div class="field">
-                <input id="js-digitalswitch-${this.gpioConfiguration.gpio}" type="checkbox" name="switchLarge" class="switch is-large" ${toggleChecked}>
+                <input id="js-digitalswitch-${this.gpioConfiguration.gpio}" type="checkbox" name="switchLarge" class="switch is-large is-success" ${toggleChecked}>
                 <label for="js-digitalswitch-${this.gpioConfiguration.gpio}"></label>
             </div>`;
         }

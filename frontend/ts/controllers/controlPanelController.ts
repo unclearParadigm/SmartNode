@@ -33,7 +33,7 @@ class ControlPanelController {
                     .find('.js-controls')
                     .append(`<div class="${controlContainerClass}"></div>`);
                 const controlContainer = this.container.find(`.${controlContainerClass}`);
-                this.digitalSwitches.push(new DigitalSwitch(controlContainer, this.dataService, config, 1000));
+                this.digitalSwitches.push(new DigitalSwitch(controlContainer, this.dataService, config, 5000));
                 this.digitalSwitches.forEach(x => x.start());
             });
         });

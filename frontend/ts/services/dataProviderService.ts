@@ -21,4 +21,9 @@ class DataProviderService {
     public fetchGPIOState(gpio: number, callback: GPIOStateCallback): void {
         $.getJSON(`/api/node/get/${gpio}`, (data) => callback(<GPIOState>data));
     }
+
+    public setGPIOState(gpio: number, gpioState: GPIOState): void {
+        console.log(gpio);
+        console.log(gpioState);
+    }
 }
