@@ -7,7 +7,7 @@
   "author": "Raffael Rehberger",
   "license": "MIT",
   "dependencies": {
-    "jquery": "^3.3.1"
+    "jquery": "^3.5.0"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.29"
